@@ -1,6 +1,5 @@
 Cirkeluppgift
 =============
-
 package 
 {
 	import flash.display.Sprite;
@@ -21,7 +20,7 @@ package
 		private var text:TextField;
 		private var score:Number;
 		private var bomb:Sprite = new Sprite();
-		
+		private var allCircles:Vector.<Sprite> = new Vector.<Sprite>
 		public function Main():void 
 		{
 			if (stage) init();
@@ -78,6 +77,7 @@ package
 			cirkel.y = Math.random () * stage.stageHeight - cirkel.height;
 			cirkel.x = Math.random () * stage.stageWidth - cirkel.width;
 			cirkel.addEventListener(MouseEvent.CLICK, bax)
+			allCircles.push(cirkel);
 			}
 		}
 			
@@ -86,6 +86,14 @@ package
 		private function resetStage(e:KeyboardEvent):void 
 		{
 			if (e.keyCode == 32)
+			
+			while (allCircles.length > 0) 
+			{
+				removeChild(allCircles[0]);
+			    allCircles.shift ();
+			}
+			
+			
 			
 			
 			makeCircles ();
@@ -116,4 +124,3 @@ package
 		
 	}
 	
-}
